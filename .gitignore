@@ -1,0 +1,8 @@
+node_modules/
+dist/
+target/
+apps/web/src/generated/
+*.log
+test-results/
+playwright-report/
+.DS_Store
