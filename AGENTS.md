@@ -4,6 +4,8 @@ Keep this file and the project decision documents current. When a change alters 
 
 Record user-tested corrections as decisions, with the reason and any remaining validation. Keep implemented behavior, planned work, and measured results distinct. When the documents disagree with the running source, reconcile them in the same change.
 
+For native macOS work, read `docs/macOS-plan.md` first. It is a proposed phased plan, not implemented functionality; the current web MVP contract remains in `docs/MVP.md`.
+
 ## Product direction
 
 - The app opens directly into a trustworthy local Markdown draft. Fast capture, legible prose, reliable selection/undo, and data recovery take priority over adding features.
@@ -24,5 +26,6 @@ Record user-tested corrections as decisions, with the reason and any remaining v
 ## Verification
 
 - Run `cargo test -p writer-core`, `npm run check`, `npm test`, and `npm run build` for changes that touch the relevant layers.
+- Before extracting code into Rust, test that code at the library/function level and through the affected web UI, preserving the same expectations after migration. Follow `docs/web-regression-plan.md`; define tests per extraction and develop broader coverage incrementally rather than making a full testing project a prerequisite.
 - Verify editor, focus mode, metrics, and appearance changes in a production preview at desktop and phone widths. Use a separate localhost origin for test writing so the user's active draft remains untouched.
 - Treat real iPhone/iPad keyboard behavior, Safari, accessibility, offline upgrade, and performance budgets as hands-on gates until measured. Record results in the roadmap rather than claiming them from desktop simulation.

@@ -5,7 +5,6 @@ Updated 26 September 2026. Work is ordered by the user's ability to trust and tu
 ## Built for first review
 
 - Trazo is the chosen product and GitHub repository name (`xJoshx/trazo`). The web title, in-app wordmark, install manifest, and package metadata use it; the existing browser database key is retained for draft continuity. On 27 September, 11 Rust tests, six web unit tests, Svelte/type checks, and a production build passed. An isolated production preview showed the Trazo title at desktop and 390px phone widths; the wordmark is visible on desktop and hidden by the current narrow-screen layout. Existing draft preservation during an in-place update still needs a browser check on the user's original origin.
-
 - One local Markdown draft with autosave, recovery copies, import/export, safe Read/Split preview, and offline PWA assets.
 - iA Writer Mono writing canvas, sentence focus on desktop and phone, neutral light/dark surfaces, and a visible 3px cyan caret with a brighter dark-theme default.
 - Rust tag detection, including hyphenated names and slash-nested paths, with distinct editor styling that preserves Markdown text.
@@ -33,6 +32,14 @@ The shortcut update passed 10 Rust core tests, Svelte/type checks, six existing 
 7. Check shortcut interception and the modal with hardware keyboards in Safari, especially browser-reserved combinations, non-US layouts, VoiceOver, and 200% zoom.
 
 ## Next product slice: documents and linked tags
+
+27 September planning update: the requested native Mac direction now has a [phased implementation plan](macOS-plan.md), covering the Rust/Swift bridge, common focus and file semantics, safe folder writing, native experience parity, and website distribution. This is planned work. It can proceed without first implementing a web document library or linked tag database. The existing web MVP hardware gates remain open.
+
+Migration testing scope, revised 27 September: identify all code being extracted into Rust and write focused tests for its library/function behavior and affected web UI before moving it. Add Mac integration checks as the native client consumes it. Develop the full testing plan incrementally; a broad regression project is not a prerequisite. See [migration testing scope](web-regression-plan.md).
+
+Phase 0 progress, 27 September: the first extraction candidates and native folder/recovery/identity/failure contracts are recorded in [macOS-plan.md](macOS-plan.md). Added file-codec and focus function tests plus production-preview browser migration checks for import/export bytes, rejected import, and focus/undo at desktop and phone widths. The checks passed on this working tree: 11 Rust core, 12 Vitest, Svelte/type checks with zero errors/warnings, production build, and four headless Chrome migration tests on isolated port 4188. No shared-code extraction or native build occurred. Intel demand, macOS hardware behavior, mixed-ending native preservation, Safari, and fault-injected file writing remain open gates.
+
+The audit reran the current working-tree checks: 11 Rust tests, six web unit tests, Svelte/type checks (zero errors/warnings), and the production build passed. This includes the pre-existing uncommitted tag regression test; it does not represent a new native build, browser interaction test, or hardware measurement. Xcode 27.0 and the Apple-silicon Rust target are installed; Swift integration and release signing remain unverified.
 
 The current IndexedDB schema has one active draft. Before a persistent tag index, decide what a document library, rename, archive, restore, and deletion mean. Then add Rust tag occurrences with normalized names and source ranges; add a versioned IndexedDB tag index linked to document IDs and source revisions; update it transactionally with saved documents; and provide a simple tag browse/filter view. Include tests for Unicode tags, code/link exclusions, duplicates, import, restore, stale analysis, and multi-tab conflicts.
 

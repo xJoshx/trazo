@@ -11,6 +11,7 @@
     "precheck": "npm run build:wasm",
     "check": "svelte-check --tsconfig ./tsconfig.json",
     "test": "vitest run",
+    "test:migration": "npm run build && playwright test -c playwright.migration.config.ts",
     "test:performance": "npm run build && playwright test"
   },
   "dependencies": {

@@ -4,6 +4,12 @@ Updated 26 September 2026. This is the durable record of the implementation choi
 
 ## System
 
+Planning note, 27 September 2026: [macOS and shared-core plan](macOS-plan.md) audits the current implementation and proposes a SwiftUI/AppKit client with a separate Rust-to-Swift adapter. It distinguishes shared semantics from platform input and storage. No Swift bridge, native client, or shared save-policy module is implemented yet; the system below remains the current architecture.
+
+Migration verification starts with focused tests for all code being extracted into Rust, covering its library/function behavior and affected web UI before and after the move. Check the real WASM integration and add Swift checks when consumed by the Mac app. Define concrete cases per extraction; the broader strategy will grow incrementally. See [migration testing scope](web-regression-plan.md).
+
+Phase 0 fixes the first migration baseline without changing the running architecture: pure file encoding and sentence scanning are the first candidates; formatting routing and deterministic save decisions follow only after their affected web behavior is tested. The native contract assigns file identity in an Application Support catalog, keeps editor revision separate from a disk fingerprint, and keeps recovery copies outside the selected folder. A native disk write is saved only after a verified file commit; recovery-only success has a separate state. Mixed-ending files need exact preservation or an explicit conversion before native autosave. The full decisions and failure gates are in [macOS-plan.md](macOS-plan.md). No native storage adapter or shared save-policy module exists yet.
+
 ```text
 Svelte shell (Write / Split / Read, focus, review panels)
   ├─ CodeMirror 6: authoritative Markdown text, selection, history, find

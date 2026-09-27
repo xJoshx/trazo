@@ -4,6 +4,12 @@ Updated 26 September 2026. This document records the current interface decisions
 
 ## Experience
 
+Native planning, 27 September 2026: the [macOS plan](macOS-plan.md) proposes preserving this writing experience in a SwiftUI/AppKit app with ordinary Markdown files in a user-selected folder. A quiet, optional file list and recoverable untitled capture precede any larger library. These are proposed native behaviors, not changes to the current one-draft web interface. Editor parity, native font assets, accessibility, and file-failure interactions require implementation and hands-on validation.
+
+Phase 0 native interaction contract: launch directly into an editable untitled draft; selecting a folder is an optional action. The first file list is flat and quiet, with one editable document. Distinguish `Saved to file` from `Recovered locally`, and keep permission, disk, recovery, or external-change errors visible with Reload, Save a Copy, or explicit Overwrite where applicable. A mixed-ending file is read-only until exact preservation or an explicit conversion is available. During analysis failure, keep typing and recovery available, retain safe styling or plain text, and show a retry action. These behaviors are planned and still need native implementation and user testing.
+
+For shared-core extractions, test the affected web editing behavior before moving the code and preserve it afterward. Define only the UI checks needed for each migration; broader visual coverage will be planned incrementally. See [migration testing scope](web-regression-plan.md).
+
 Trazo opens directly into the current Markdown draft. Writing is the primary view. Reading preview and wide-screen Split are available without replacing the editor or moving the caret. The interface borrows iA Writer's calm measure, mono typography, and focus behavior while retaining Trazo's own name and controls.
 
 The user chose Trazo as the product and repository name on 27 September 2026. The web title, in-app wordmark, and install name use Trazo; the existing icon remains a provisional mark pending visual review. This naming decision does not decide whether the project will be open source.

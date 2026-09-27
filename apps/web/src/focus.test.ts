@@ -42,4 +42,25 @@ describe('sentence focus', () => {
     const doc = Text.of(['A las 3.14 empieza example.com. Después.'])
     expect(activeSentenceRange(doc, 15, [])).toEqual({ start: 0, end: 'A las 3.14 empieza example.com.'.length })
   })
+
+  it('keeps punctuation clusters and closing quotes in the first sentence', () => {
+    const source = 'Dijo «¿Listo?!» Luego seguimos.'
+    const doc = Text.of([source])
+    expect(activeSentenceRange(doc, source.indexOf('Listo'), [])).toEqual({ start: 0, end: 'Dijo «¿Listo?!»'.length })
+    expect(activeSentenceRange(doc, source.indexOf('Luego'), [])).toEqual({ start: 'Dijo «¿Listo?!»'.length, end: source.length })
+  })
+
+  it('falls back to heading and blank-line block boundaries before analysis', () => {
+    const doc = Text.of(['# Heading', 'Primera frase', 'sigue aquí. Después.', '', 'Última.'])
+    expect(activeSentenceRange(doc, doc.line(3).from + 3, [])).toEqual({ start: doc.line(2).from, end: doc.line(3).from + 'sigue aquí.'.length })
+    expect(activeSentenceRange(doc, doc.line(1).from + 2, [])).toEqual({ start: doc.line(1).from, end: doc.line(1).to })
+    expect(activeSentenceRange(doc, doc.line(5).from + 2, [])).toEqual({ start: doc.line(5).from, end: doc.line(5).to })
+  })
+
+  it('uses UTF-16 positions after emoji and keeps trailing whitespace with the previous sentence', () => {
+    const source = '🧑‍💻 Hola.  Adiós.'
+    const doc = Text.of([source])
+    expect(activeSentenceRange(doc, source.length, [])).toEqual({ start: '🧑‍💻 Hola.'.length, end: source.length })
+    expect(activeSentenceRange(doc, source.indexOf('Adiós') - 1, [])).toEqual({ start: '🧑‍💻 Hola.'.length, end: source.length })
+  })
 })

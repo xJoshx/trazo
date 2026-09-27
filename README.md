@@ -56,4 +56,8 @@ The production build writes `dist/build-metrics.json` for the panel. Its gzip to
 
 Project decisions live in [Design](docs/Design.md), [architecture](docs/architecture.md), and [roadmap](docs/roadmap.md). [AGENTS.md](AGENTS.md) tells future agents to keep them current.
 
+The [macOS and shared Rust core plan](docs/macOS-plan.md) records a proposed Swift client with direct saving into a selected Markdown folder, reuse opportunities, and phased implementation gates. The native app is not implemented yet.
+
+The [migration testing scope](docs/web-regression-plan.md) requires focused library/function and web UI tests for the code being moved into Rust. Phase 0 adds file-codec and focus unit cases plus a production-preview browser baseline. Run `npm run test:migration` to build and run its four Chrome checks on isolated localhost port 4188; the browser may require permission to bind that port. On 27 September, 11 Rust core tests, 12 web unit tests, Svelte/type checks, the production build, and all four migration browser checks passed on the working tree. The native app and Swift bridge remain unimplemented.
+
 Typography diagnostic: 8/10. Body size, measure, leading, hierarchy, font payload, fallbacks, heading wraps, and link distinction are implemented. Real phone rendering and 200% zoom are unverified.

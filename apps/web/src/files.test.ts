@@ -16,4 +16,23 @@ describe('Markdown files', () => {
     const file = new File([new Uint8Array([0xff])], 'broken.md')
     await expect(readMarkdownFile(file)).rejects.toThrow()
   })
+
+  it('normalizes mixed line endings using the first detected CRLF export convention', async () => {
+    const imported = await readMarkdownFile(new File(['one\r\ntwo\nthree\r\n'], 'mixed.markdown'))
+    expect(imported).toEqual({ filename: 'mixed.markdown', text: 'one\ntwo\nthree\n', newline: '\r\n', bom: false })
+    expect(new TextDecoder().decode(encodeMarkdown({ ...blankDraft(), ...imported }))).toBe('one\r\ntwo\r\nthree\r\n')
+  })
+
+  it('keeps LF-only Unicode source byte-identical on export', async () => {
+    const source = '# Día\nCafé e\u0301 🧑‍💻 中\n'
+    const imported = await readMarkdownFile(new File([source], 'día.txt'))
+    expect(imported.newline).toBe('\n')
+    expect(imported.bom).toBe(false)
+    expect(new TextDecoder().decode(encodeMarkdown({ ...blankDraft(), ...imported }))).toBe(source)
+  })
+
+  it('rejects unsupported extension and files above the import limit', async () => {
+    await expect(readMarkdownFile(new File(['text'], 'notes.rtf'))).rejects.toThrow('Choose a Markdown or text file.')
+    await expect(readMarkdownFile(new File([new Uint8Array(10_000_001)], 'large.md'))).rejects.toThrow('up to 10 MB')
+  })
 })
