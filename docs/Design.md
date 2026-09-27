@@ -4,7 +4,9 @@ Updated 26 September 2026. This document records the current interface decisions
 
 ## Experience
 
-Daymark opens directly into the current Markdown draft. Writing is the primary view. Reading preview and wide-screen Split are available without replacing the editor or moving the caret. The interface borrows iA Writer's calm measure, mono typography, and focus behavior while retaining Daymark's own name and controls.
+Trazo opens directly into the current Markdown draft. Writing is the primary view. Reading preview and wide-screen Split are available without replacing the editor or moving the caret. The interface borrows iA Writer's calm measure, mono typography, and focus behavior while retaining Trazo's own name and controls.
+
+The user chose Trazo as the product and repository name on 27 September 2026. The web title, in-app wordmark, and install name use Trazo; the existing icon remains a provisional mark pending visual review. This naming decision does not decide whether the project will be open source.
 
 The canvas uses opaque paper with neutral ink. Controls are compact and quiet in normal writing; they are easy to tap, have accessible names and focus rings, and do not compete with the document. On Apple platforms, use the Human Interface Guidelines and current Liquid Glass guidance. A future native client should use native SwiftUI glass APIs for controls with availability checks and readable material fallbacks. Long prose remains on an opaque surface.
 
@@ -33,7 +35,7 @@ On desktop and phone, focus mode has a subtle 44px corner exit control. Escape, 
 
 ## Keyboard commands
 
-The shortcut reference opens from the footer `?`, Document actions, Cmd-/ on Mac, or Ctrl-? on other keyboards. It is a native modal dialog with Escape dismissal and shows the bindings for the current platform. The list contains only commands Daymark implements. Mac bindings follow the applicable [iA Writer shortcut guide](https://ia.net/writer/support/basics/shortcuts?platform=mac); the cross-platform set adopts [Omawrite's documented keys](https://github.com/omacom/omawrite/blob/master/README.md#shortcuts) for file, search, undo, and Markdown formatting where possible. Commands for iA Writer's library, multiple windows, printing, and other absent features are outside the current one-draft product. Keep the help list generated from the command catalog so it cannot drift from dispatch.
+The shortcut reference opens from the footer `?`, Document actions, Cmd-/ on Mac, or Ctrl-? on other keyboards. It is a native modal dialog with Escape dismissal and shows the bindings for the current platform. The list contains only commands Trazo implements. Mac bindings follow the applicable [iA Writer shortcut guide](https://ia.net/writer/support/basics/shortcuts?platform=mac); the cross-platform set adopts [Omawrite's documented keys](https://github.com/omacom/omawrite/blob/master/README.md#shortcuts) for file, search, undo, and Markdown formatting where possible. Commands for iA Writer's library, multiple windows, printing, and other absent features are outside the current one-draft product. Keep the help list generated from the command catalog so it cannot drift from dispatch.
 
 ## Review tools
 

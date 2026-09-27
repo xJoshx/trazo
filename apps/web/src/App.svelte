@@ -416,7 +416,7 @@
 
 <div class:focus-mode={focusMode} class:inspector-open={metricsOpen || appearanceOpen} class="app-shell">
   <header class="toolbar">
-    <div class="brand" aria-label="Daymark Writer"><span class="brand-mark" aria-hidden="true">✳</span><span class="brand-name">daymark</span></div>
+    <div class="brand" aria-label="Trazo"><span class="brand-mark" aria-hidden="true">✳</span><span class="brand-name">trazo</span></div>
     <div class="document-name">
       {#if editingName}
         <input class="name-input" bind:value={nameInput} aria-label="Document filename" on:keydown={event => { if (event.key === 'Enter') syncFilename(nameInput); if (event.key === 'Escape') editingName = false }} on:blur={() => syncFilename(nameInput)} />

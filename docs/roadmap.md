@@ -4,6 +4,8 @@ Updated 26 September 2026. Work is ordered by the user's ability to trust and tu
 
 ## Built for first review
 
+- Trazo is the chosen product and GitHub repository name (`xJoshx/trazo`). The web title, in-app wordmark, install manifest, and package metadata use it; the existing browser database key is retained for draft continuity. On 27 September, 11 Rust tests, six web unit tests, Svelte/type checks, and a production build passed. An isolated production preview showed the Trazo title at desktop and 390px phone widths; the wordmark is visible on desktop and hidden by the current narrow-screen layout. Existing draft preservation during an in-place update still needs a browser check on the user's original origin.
+
 - One local Markdown draft with autosave, recovery copies, import/export, safe Read/Split preview, and offline PWA assets.
 - iA Writer Mono writing canvas, sentence focus on desktop and phone, neutral light/dark surfaces, and a visible 3px cyan caret with a brighter dark-theme default.
 - Rust tag detection, including hyphenated names and slash-nested paths, with distinct editor styling that preserves Markdown text.

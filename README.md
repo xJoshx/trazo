@@ -1,4 +1,4 @@
-# Daymark Writer
+# Trazo
 
 A local-first Markdown diary PWA built from [the first-iteration plan](docs/MVP.md). It opens straight into one draft, saves on this device, and offers Write, Read, and wide-screen Split views.
 

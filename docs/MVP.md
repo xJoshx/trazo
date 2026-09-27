@@ -1,4 +1,4 @@
-# AI Writer: first iteration
+# Trazo: first iteration
 
 MVP contract and research record · 26 September 2026
 

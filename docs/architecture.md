@@ -48,6 +48,8 @@ A linked tag index is deferred until the document-library model is defined. It s
 
 ## Local persistence and offline behavior
 
+The product rename to Trazo leaves the IndexedDB database key `daymark-writer` intact. Browser storage is bound to the origin and database name; changing that key would hide existing drafts and recovery copies. This is a compatibility identifier, not the displayed product name.
+
 IndexedDB schema v1 stores one active draft, recovery entries, and preferences. A draft records ID, filename, text, newline convention, BOM, revision, saved time, caret, and scroll position. Saves are serialized. `Saved on this device` is shown only after the current revision commits. Import and new-draft actions preserve a recovery copy. Export is a separate `.md` download, not synchronization.
 
 The visible save label waits for a short quiet period after the latest committed edit, so quick transactions do not alternate `Saving…` and `Saved…` on every keystroke. The actual revision check remains immediate; import, new draft, and app update use `persistedRevision` and error/conflict state rather than the delayed label as their safety gate. Save failures and conflicts bypass the delay.

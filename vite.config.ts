@@ -50,8 +50,8 @@ export default defineConfig({
       injectRegister: 'auto',
       includeAssets: ['icons/*', 'fonts/*'],
       manifest: {
-        name: 'Daymark Writer',
-        short_name: 'Daymark',
+        name: 'Trazo',
+        short_name: 'Trazo',
         description: 'A quiet, offline Markdown diary',
         display: 'standalone',
         start_url: '/',

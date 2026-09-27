@@ -1,4 +1,4 @@
-# Agent instructions for AI Writer
+# Agent instructions for Trazo
 
 Keep this file and the project decision documents current. When a change alters the interface, behavior, persistence, architecture, or scope, update the relevant part of `docs/Design.md`, `docs/architecture.md`, and `docs/roadmap.md` in the same work. Update `docs/MVP.md` when the MVP contract changes; keep `README.md` accurate for setup and verified checks.
 

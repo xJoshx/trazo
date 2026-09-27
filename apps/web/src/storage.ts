@@ -15,6 +15,7 @@ export interface Recovery extends Draft {
   reason: 'snapshot' | 'conflict'
 }
 
+// Keep the original database name so existing on-device drafts survive the app rename.
 const DB_NAME = 'daymark-writer'
 const DB_VERSION = 1
 const ACTIVE_KEY = 'active'
