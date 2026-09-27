@@ -545,6 +545,19 @@ mod tests {
     }
 
     #[test]
+    fn standalone_tag_after_heading_is_detected() {
+        let source = "# 27/09/2026\n\n\n\n#diario";
+        let a = analyze(source, false);
+        assert!(
+            a.tags.iter().any(|tag| {
+                tag.start == source.find("#diario").unwrap() && tag.end == source.len()
+            }),
+            "{:#?}",
+            a.tags
+        );
+    }
+
+    #[test]
     fn commonmark_extensions_render_without_remote_assets() {
         let a = analyze("# Title\n\n| A | B |\n| - | - |\n| **x** | y |\n\n- [x] done\n\n~~old~~ [safe](https://example.com) ![photo](https://example.com/a.png)\n\n[^n]: note", true);
         let html = a.preview_html.unwrap();
